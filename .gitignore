@@ -1,0 +1,7 @@
+*.egg-info*
+*.py[cod]
+.coverage
+.pytest_cache
+.python-version
+build/*
+dist/*

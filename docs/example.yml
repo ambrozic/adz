@@ -1,0 +1,110 @@
+settings:
+  colors: true
+  theme: fruity
+  response: true
+
+variables:
+  token: TOKEN
+  endpoint: bearer
+
+endpoints:
+  get:
+    description: GET request
+    request: get https://httpbin.org/get
+    headers:
+      Content-Type: application/json
+
+  post:
+    description: POST request
+    request: post https://httpbin.org/post
+    headers:
+      Content-Type: application/json
+    json: {
+      "a": "aa",
+      "b": "bb",
+    }
+    files:
+      file.json: ./path/to/file.json
+
+  patch:
+    description: PATCH request
+    request: patch https://httpbin.org/patch
+    headers:
+      Content-Type: application/json
+    json: {
+      "a": "aa",
+      "b": "bb",
+    }
+    files:
+      - ./path/to/file.json
+
+  put:
+    description: PUT request
+    request: put https://httpbin.org/put
+    headers:
+      Content-Type: application/json
+    files:
+      ./path/to/file.json
+
+  delete:
+    description: DELETE request
+    request: delete https://httpbin.org/delete
+    headers:
+      Content-Type: application/json
+
+  params:
+    description: query string parameters
+    request: get https://httpbin.org/get
+    headers:
+      Content-Type: application/json
+    params:
+      - a: "aa"
+      - b: "bb"
+
+  data:
+    description: data request
+    request: post https://httpbin.org/post
+    headers:
+      Content-Type: application/json
+    data: {
+      "a": "aa",
+      "b": "bb",
+    }
+
+  form:
+    description: form request
+    request: post https://httpbin.org/post
+    headers:
+      Content-Type: application/json
+    data: {
+      "a": ["aa", "aaa"],
+      "b": ["bb", "bbb"],
+      "c": null,
+    }
+    files:
+      file1.json: ./path/to/file1.json
+      file2.json: ./path/to/file2.json
+
+  cookies:
+    description: cookies
+    request: get https://httpbin.org/cookies
+    headers:
+      Content-Type: application/json
+    cookies:
+      - a: "aa"
+      - b: "bb"
+
+  timeout:
+    description: timeout
+    method: GET
+    url: https://httpbin.org/cookies
+    headers:
+      Content-Type: application/json
+
+  variables:
+    description: interpolate variables
+    method: GET
+    url: https://httpbin.org/$endpoint
+    headers:
+      Content-Type: application/json
+      Authorization: Bearer $token

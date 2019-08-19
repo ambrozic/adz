@@ -51,7 +51,7 @@ HTTP/1.1 200 OK
         "Accept-Encoding": "gzip, deflate",
         "Content-Type": "application/json",
         "Host": "httpbin.org",
-        "User-Agent": "python-http3/0.6.7"
+        "User-Agent": "python-httpx/0.7.1"
     },
     "url": "https://httpbin.org/get"
 }
@@ -70,7 +70,7 @@ For an example configuration look at [docs/example.yml](https://github.com/ambro
     - any theme name from [here](https://help.farbox.com/pygments.html) should work
 
 #### variables
-- used to interpolate values in headers and url
+- used to interpolate values in headers and urls
     - `variable: abc` applied on `url: http://example.org/$variable` results in `http://example.org/abc` 
 
 #### endpoints

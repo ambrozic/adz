@@ -27,7 +27,7 @@ setup(
         "Code": "https://github.com/ambrozic/adz",
         "Documentation": "https://github.com/ambrozic/adz",
     },
-    keywords="scraping framework",
+    keywords="cli http requests yaml",
     packages=find_packages(exclude=["tests"]),
     include_package_data=True,
     python_requires=">=3.6",
@@ -35,7 +35,7 @@ setup(
         "click==7.0,<8.0",
         "pyaml>=19.4,<20.0",
         "pygments>=2.4,<3.0",
-        "http3==0.6.7",
+        "httpx>=0.7.0,<0.8.0",
     ],
     extras_require={
         "tests": [
@@ -46,7 +46,7 @@ setup(
             "pytest-asyncio==0.10.0",
             "pytest-cov>=2.7,<3.0",
             "pytest>=5.0,<6.0",
-            "uvicorn==0.8.4",
+            "uvicorn>=0.8.0,<0.9.0",
         ]
     },
     entry_points={"console_scripts": ["adz=adz.cli:main"]},

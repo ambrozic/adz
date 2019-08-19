@@ -40,4 +40,4 @@ class Echo:
         formatter = Terminal256Formatter(
             style=pygments.styles.get_style_by_name(self.config.settings["theme"])
         )
-        print(pygments.highlight(txt or "".encode(), lexer, formatter).strip())
+        print(pygments.highlight(str(txt or "").encode(), lexer, formatter).strip())

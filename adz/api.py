@@ -1,6 +1,6 @@
 import http
 
-import http3
+import httpx
 
 from .cfg import CFG
 
@@ -25,7 +25,7 @@ class Response:
         protocol: str,
         status_code: int,
         headers: dict,
-        content: http3.ResponseContent,
+        content: httpx.ResponseContent,
     ):
         self.method = method
         self.url = url
@@ -53,7 +53,7 @@ class ADZ:
         headers = endpoint.get("headers")
         files = endpoint.get("files", {})
 
-        response = http3.request(
+        response = httpx.request(
             method=method,
             url=url,
             params=endpoint.get("params"),

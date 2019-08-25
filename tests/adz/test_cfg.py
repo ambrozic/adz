@@ -225,6 +225,19 @@ def test_cfg_configure_json_file(config, tmpdir):
     }
 
 
+def test_cfg_configure_variable_file(config, tmpdir):
+    file = tmpdir.join("file.txt")
+    file.write("abc=123")
+    data = {"variables": {"var": f"file://{file}"}}
+    path = str(config(data))
+    assert CFG.configure(path=path).to_dict() == {
+        "path": path,
+        "settings": {"colors": True, "response": True, "theme": "native"},
+        "variables": {"var": "abc=123"},
+        "endpoints": {},
+    }
+
+
 def test_cfg_configure_env_path(config):
     data = {"endpoints": {"n": {"headers": {}}}}
     path = str(config(data))

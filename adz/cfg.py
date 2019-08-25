@@ -18,6 +18,10 @@ class CFG:
         self.variables = variables or dict()
         self.endpoints = endpoints or dict()
 
+        for key, value in self.variables.items():
+            if isinstance(value, str) and value.startswith("file://"):
+                self.variables[key] = self.file_to_string(path=value)
+
         for name, v in self.endpoints.items():
             for key, value in dict(v).items():
                 if key == "request":
@@ -30,11 +34,11 @@ class CFG:
                     and isinstance(value, str)
                     and value.startswith("file://")
                 ):
-                    with open(value[7:], "r") as f:
-                        try:
-                            self.endpoints[name][key] = json.load(f)
-                        except json.decoder.JSONDecodeError:
-                            pass
+                    try:
+                        content = self.file_to_string(path=value)
+                        self.endpoints[name][key] = json.loads(content)
+                    except json.decoder.JSONDecodeError:
+                        pass
 
                 if key in ["files"]:
                     if isinstance(value, list):
@@ -100,6 +104,11 @@ class CFG:
             path=path,
             **{a: content.get(a) or {} for a in ["settings", "variables", "endpoints"]},
         )
+
+    def file_to_string(self, path):
+        path = os.path.realpath(path[7:] if path.startswith("file://") else path)
+        with open(path, "r") as f:
+            return f.read().strip()
 
     def to_dict(self) -> dict:
         return dict(

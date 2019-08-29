@@ -65,7 +65,7 @@ def main(config, details, list_, output, settings, var, colors, response, endpoi
 
         response = adz(name=endpoint)
         echo(f"{response.method} " f"{response.url}")
-        echo(f"{response.protocol} {response.status_code} {response.status_phrase}")
+        echo(f"{response.http_version} {response.status_code} {response.status_phrase}")
 
         for k, v in response.headers.items():
             echo(f" • {k}: {v if 'auth' not in k.lower() else '<hidden>'}")

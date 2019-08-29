@@ -35,7 +35,7 @@ setup(
         "click==7.0,<8.0",
         "pyaml>=19.4,<20.0",
         "pygments>=2.4,<3.0",
-        "httpx>=0.7.0,<0.8.0",
+        "httpx>=0.7.2,<0.8.0",
     ],
     extras_require={
         "tests": [

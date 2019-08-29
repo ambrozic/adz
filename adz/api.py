@@ -11,7 +11,7 @@ class Response:
     __slots__ = (
         "method",
         "url",
-        "protocol",
+        "http_version",
         "status_code",
         "status_phrase",
         "headers",
@@ -22,14 +22,14 @@ class Response:
         self,
         method: str,
         url: str,
-        protocol: str,
+        http_version: str,
         status_code: int,
         headers: dict,
         content: httpx.ResponseContent,
     ):
         self.method = method
         self.url = url
-        self.protocol = protocol
+        self.http_version = http_version
         self.status_code = status_code
         self.status_phrase = CODES[status_code]
         self.headers = headers
@@ -72,7 +72,7 @@ class ADZ:
         return Response(
             method=method,
             url=str(response.url),
-            protocol=response.protocol,
+            http_version=response.http_version,
             status_code=response.status_code,
             headers=dict(response.headers),
             content=response.content,

@@ -35,11 +35,11 @@ setup(
         "click==7.0,<8.0",
         "pyaml>=19.4,<20.0",
         "pygments>=2.4,<3.0",
-        "httpx>=0.7.2,<0.8.0",
+        "requests>=2.0.0,<3.0.0",
     ],
     extras_require={
         "tests": [
-            "black==19.3b0",
+            "black==19.10b0",
             "codecov>=2.0,<3.0",
             "isort>4.0,<5.0",
             "pipdeptree>=0.13,<1.0",

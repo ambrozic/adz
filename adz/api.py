@@ -1,6 +1,6 @@
 import http
 
-import httpx
+import requests
 
 from .cfg import CFG
 
@@ -25,7 +25,7 @@ class Response:
         http_version: str,
         status_code: int,
         headers: dict,
-        content: httpx.ResponseContent,
+        content: bytes,
     ):
         self.method = method
         self.url = url
@@ -53,7 +53,7 @@ class ADZ:
         headers = endpoint.get("headers")
         files = endpoint.get("files", {})
 
-        response = httpx.request(
+        response = requests.request(
             method=method,
             url=url,
             params=endpoint.get("params"),
@@ -72,7 +72,7 @@ class ADZ:
         return Response(
             method=method,
             url=str(response.url),
-            http_version=response.http_version,
+            http_version=f"HTTP/{response.raw.version / 10}",
             status_code=response.status_code,
             headers=dict(response.headers),
             content=response.content,
